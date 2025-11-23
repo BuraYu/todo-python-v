@@ -6,7 +6,7 @@ from .models import Todo
 def todo_list(request):
     """Display list of all todos"""
     todos = Todo.objects.all()
-    return render(request, 'todo/todo_list.html', {'todos': todos})
+    return render(request, 'todo/home.html', {'todos': todos})
 
 
 def todo_create(request):
@@ -23,7 +23,7 @@ def todo_create(request):
         )
         return redirect('todo_list')
     
-    return render(request, 'todo/todo_form.html')
+    return render(request, 'todo/base.html')
 
 
 def todo_edit(request, pk):
@@ -38,7 +38,7 @@ def todo_edit(request, pk):
         todo.save()
         return redirect('todo_list')
     
-    return render(request, 'todo/todo_form.html', {'todo': todo})
+    return render(request, 'todo/base.html', {'todo': todo})
 
 
 def todo_delete(request, pk):

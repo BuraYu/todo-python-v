@@ -13,7 +13,7 @@ def todo_create(request):
     """Create a new todo"""
     if request.method == 'POST':
         title = request.POST.get('title')
-        description = request.POST.get('description')
+        description = request.POST.get('description', '')
         due_date = request.POST.get('due_date')
         
         todo = Todo.objects.create(
@@ -32,7 +32,7 @@ def todo_edit(request, pk):
     
     if request.method == 'POST':
         todo.title = request.POST.get('title')
-        todo.description = request.POST.get('description')
+        todo.description = request.POST.get('description', '')
         due_date = request.POST.get('due_date')
         todo.due_date = due_date if due_date else None
         todo.save()
